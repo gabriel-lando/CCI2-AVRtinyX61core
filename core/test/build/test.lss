@@ -1,0 +1,171 @@
+
+test.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000007c  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  0000007c  000000f0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .debug_aranges 00000020  00000000  00000000  000000f0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_info   00000089  00000000  00000000  00000110  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_abbrev 00000014  00000000  00000000  00000199  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_line   000001a7  00000000  00000000  000001ad  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__ctors_end>:
+.equ STATUS_WORKING,	0x15
+.equ STATUS_DONE_OK,	0x33
+.equ STATUS_ERROR,	0xF3
+.equ ARITH_LOOPS,		130
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+	nop
+   0:	00 00       	nop
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Setup defaults
+	ldi R16,0x7f
+   2:	0f e7       	ldi	r16, 0x7F	; 127
+	clr r0
+   4:	00 24       	eor	r0, r0
+
+	out IO_SPL,R16
+   6:	0d bf       	out	0x3d, r16	; 61
+	out IO_SPH,R0
+   8:	0e be       	out	0x3e, r0	; 62
+	out IO_SREG,r0
+   a:	0f be       	out	0x3f, r0	; 63
+
+	out IO_STEP_REG,r0 ;; Set step
+   c:	0b ba       	out	0x1b, r0	; 27
+	ldi r16,STATUS_WORKING
+   e:	05 e1       	ldi	r16, 0x15	; 21
+	out IO_STATUS_REG,r16 ;; Set status
+  10:	08 bb       	out	0x18, r16	; 24
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Load registers with default info
+	clr r0
+  12:	00 24       	eor	r0, r0
+	clr r1
+  14:	11 24       	eor	r1, r1
+	clr r2
+  16:	22 24       	eor	r2, r2
+	clr r3
+  18:	33 24       	eor	r3, r3
+	clr r4
+  1a:	44 24       	eor	r4, r4
+	clr r5
+  1c:	55 24       	eor	r5, r5
+	clr r6
+  1e:	66 24       	eor	r6, r6
+	clr r7
+  20:	77 24       	eor	r7, r7
+	clr r8
+  22:	88 24       	eor	r8, r8
+	clr r9
+  24:	99 24       	eor	r9, r9
+	clr r10
+  26:	aa 24       	eor	r10, r10
+	clr r11
+  28:	bb 24       	eor	r11, r11
+	clr r12
+  2a:	cc 24       	eor	r12, r12
+	clr r13
+  2c:	dd 24       	eor	r13, r13
+	clr r14
+  2e:	ee 24       	eor	r14, r14
+	clr r15
+  30:	ff 24       	eor	r15, r15
+	clr r16
+  32:	00 27       	eor	r16, r16
+	clr r17
+  34:	11 27       	eor	r17, r17
+	clr r18
+  36:	22 27       	eor	r18, r18
+	clr r19
+  38:	33 27       	eor	r19, r19
+	clr r20
+  3a:	44 27       	eor	r20, r20
+	clr r21
+  3c:	55 27       	eor	r21, r21
+	clr r22
+  3e:	66 27       	eor	r22, r22
+	clr r23
+  40:	77 27       	eor	r23, r23
+	clr r24
+  42:	88 27       	eor	r24, r24
+	clr r25
+  44:	99 27       	eor	r25, r25
+	clr r26
+  46:	aa 27       	eor	r26, r26
+	clr r27
+  48:	bb 27       	eor	r27, r27
+	clr r28
+  4a:	cc 27       	eor	r28, r28
+	clr r29
+  4c:	dd 27       	eor	r29, r29
+	clr r30
+  4e:	ee 27       	eor	r30, r30
+	clr r31
+  50:	ff 27       	eor	r31, r31
+
+00000052 <first_test>:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;;;;;;;;;;;;; DO TESTS
+first_test:
+    clr r20
+  52:	44 27       	eor	r20, r20
+    ldi r22,1
+  54:	61 e0       	ldi	r22, 0x01	; 1
+    ldi r24,2
+  56:	82 e0       	ldi	r24, 0x02	; 2
+	ldi r26,3
+  58:	a3 e0       	ldi	r26, 0x03	; 3
+    ldi r28,4
+  5a:	c4 e0       	ldi	r28, 0x04	; 4
+	ldi r30,5
+  5c:	e5 e0       	ldi	r30, 0x05	; 5
+
+    add r20,r22     ; R0 = 0 + 1 = 1
+  5e:	46 0f       	add	r20, r22
+    add r20,r24     ; R0 = 1 + 2 = 3
+  60:	48 0f       	add	r20, r24
+    sub r20,r26     ; R0 = 3 - 3 = 0
+  62:	4a 1b       	sub	r20, r26
+    sub r20,r22     ; R0 = 0 - 1 = 255 (-1)
+  64:	46 1b       	sub	r20, r22
+    inc r20         ; R0 = 255 (-1) + 1 = 0
+  66:	43 95       	inc	r20
+    add r20,r28     ; R0 = 0 + 4 = 4
+  68:	4c 0f       	add	r20, r28
+    dec r20         ; R0 = 4 - 1 = 3
+  6a:	4a 95       	dec	r20
+    dec r20         ; R0 = 3 - 1 = 2
+  6c:	4a 95       	dec	r20
+    dec r20         ; R0 = 2 - 1 = 1
+  6e:	4a 95       	dec	r20
+    dec r20         ; R0 = 1 - 1 = 0
+  70:	4a 95       	dec	r20
+
+00000072 <done>:
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+done:
+	push r16
+  72:	0f 93       	push	r16
+	ldi r16,STATUS_DONE_OK
+  74:	03 e3       	ldi	r16, 0x33	; 51
+	out IO_STATUS_REG,r16 ;; Set status
+  76:	08 bb       	out	0x18, r16	; 24
+	pop r16
+  78:	0f 91       	pop	r16
+
+0000007a <done2>:
+done2:	
+	rjmp done2
+  7a:	ff cf       	rjmp	.-2      	; 0x7a <done2>
