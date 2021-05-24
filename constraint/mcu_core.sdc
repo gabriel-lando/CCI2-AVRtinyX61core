@@ -5,7 +5,7 @@
 ## DEFINE VARS
 set sdc_version 1.7
 set_units -capacitance fF -time ns
-create_clock -name {Clk} -period 5.0 [get_ports {Clk}]
+create_clock -name {Clk} -period 10.0 [get_ports {Clk}]
 set_false_path -from [get_ports {Rst}]
 
 ## INPUTS

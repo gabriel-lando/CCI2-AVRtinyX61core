@@ -13,13 +13,17 @@ place_design
 
 ##Place pins in the chip sides
 
-edit_pin -side Top -layer 4 -spread_type center -spacing 3 -pin {Bus2IP_Clk {Bus2IP_RdCE[0]} {Bus2IP_RdCE[1]} {Bus2IP_RdCE[2]} {Bus2IP_RdCE[3]} {Bus2IP_RdCE[4]} {Bus2IP_RdCE[5]} {Bus2IP_RdCE[6]} {Bus2IP_RdCE[7]} {Bus2IP_RdCE[8]} {Bus2IP_RdCE[9]} {Bus2IP_RdCE[10]} {Bus2IP_RdCE[11]} {Bus2IP_RdCE[12]} {Bus2IP_RdCE[13]} {Bus2IP_RdCE[14]}}
+eval_legacy {setPinAssignMode -pinEditInBatch true}
 
-edit_pin -side Left -layer 3 -spread_type center -spacing 3 -pin {{Bus2IP_Data[0]} {Bus2IP_Data[1]} {Bus2IP_Data[2]} {Bus2IP_Data[3]} {Bus2IP_Data[4]} {Bus2IP_Data[5]} {Bus2IP_Data[6]} {Bus2IP_Data[7]} Bus2IP_Reset}
+edit_pin -side Top -layer 2 -spread_type center -spacing 10.8 -pin {Clk Rst En {PM_A[15]} {PM_A[14]}  {PM_A[13]} {PM_A[12]} {PM_A[11]} {PM_A[10]} {PM_A[9]} {PM_A[8]} {PM_A[7]} {PM_A[6]} {PM_A[5]} {PM_A[4]} {PM_A[3]} {PM_A[2]} {PM_A[1]} {PM_A[0]} {PM_Drd[15]} {PM_Drd[14]} {PM_Drd[13]} {PM_Drd[12]} {PM_Drd[11]} {PM_Drd[10]} {PM_Drd[9]} {PM_Drd[8]} {PM_Drd[7]}}
 
-edit_pin -side Bottom -layer 4 -spread_type center -spacing 3 -pin {{Bus2IP_WrCE[0]} {Bus2IP_WrCE[1]} {Bus2IP_WrCE[2]} {Bus2IP_WrCE[3]} {Bus2IP_WrCE[4]} {Bus2IP_WrCE[5]} {Bus2IP_WrCE[6]} {Bus2IP_WrCE[7]} {Bus2IP_WrCE[8]} {Bus2IP_WrCE[9]} {Bus2IP_WrCE[10]} {Bus2IP_WrCE[11]} {Bus2IP_WrCE[12]} {Bus2IP_WrCE[13]} {Bus2IP_WrCE[14]}}
+edit_pin -side Left -layer 3 -spread_type center -spacing 10.8 -pin {{PM_Drd[6]} {PM_Drd[5]} {PM_Drd[4]} {PM_Drd[3]} {PM_Drd[2]} {PM_Drd[1]} {PM_Drd[0]} {DM_A[15]} {DM_A[14]} {DM_A[13]} {DM_A[12]} {DM_A[11]} {DM_A[10]} {DM_A[9]} {DM_A[8]} {DM_A[7]} {DM_A[6]} {DM_A[5]} {DM_A[4]} {DM_A[3]} {DM_A[2]} {DM_A[1]} {DM_A[0]} {DM_Areal[15]} {DM_Areal[14]} {DM_Areal[13]} {DM_Areal[12]} {DM_Areal[11]}}
 
-edit_pin -side Right -layer 3 -spread_type center -spacing 3 -pin {{IP2Bus_Data[0]} {IP2Bus_Data[1]} {IP2Bus_Data[2]} {IP2Bus_Data[3]} {IP2Bus_Data[4]} {IP2Bus_Data[5]} {IP2Bus_Data[6]} {IP2Bus_Data[7]} user_int}
+edit_pin -side Bottom -layer 2 -spread_type center -spacing 10.8 -pin {{DM_Areal[10]} {DM_Areal[9]} {DM_Areal[8]} {DM_Areal[7]} {DM_Areal[6]} {DM_Areal[5]} {DM_Areal[4]} {DM_Areal[3]} {DM_Areal[2]} {DM_Areal[1]} {DM_Areal[0]} {DM_Drd[7]} {DM_Drd[6]} {DM_Drd[5]} {DM_Drd[4]} {DM_Drd[3]} {DM_Drd[2]} {DM_Drd[1]} {DM_Drd[0]} {DM_Dwr[7]} {DM_Dwr[6]} {DM_Dwr[5]} {DM_Dwr[4]} {DM_Dwr[3]} {DM_Dwr[2]} {DM_Dwr[1]} {DM_Dwr[0]} DM_rd}
+
+edit_pin -side Right -layer 3 -spread_type center -spacing 10.8 -pin {DM_wr {IO_A[5]} {IO_A[4]} {IO_A[3]} {IO_A[2]} {IO_A[1]} {IO_A[0]} {IO_Drd[7]} {IO_Drd[6]} {IO_Drd[5]} {IO_Drd[4]} {IO_Drd[3]} {IO_Drd[2]} {IO_Drd[1]} {IO_Drd[0]} {IO_Dwr[7]} {IO_Dwr[6]} {IO_Dwr[5]} {IO_Dwr[4]} {IO_Dwr[3]} {IO_Dwr[2]} {IO_Dwr[1]} {IO_Dwr[0]} IO_rd IO_wr OT_FeatErr OT_InstrErr}
+
+eval_legacy {setPinAssignMode -pinEditInBatch false}
 
 ccopt_design 
 

@@ -20,4 +20,4 @@ check_design -all
 
 report_timing
 
-check_drc
+check_drc -limit 10000

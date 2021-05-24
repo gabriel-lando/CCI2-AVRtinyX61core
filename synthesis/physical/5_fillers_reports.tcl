@@ -8,6 +8,8 @@
 ##  -Generate a summary report of the final design          ##
 ##############################################################
 ##Add filler cells
-add_fillers -base_cells HS65_GS_FILLERPFP4 HS65_GS_FILLERPFP3 HS65_GS_FILLERPFP2 HS65_GS_FILLERPFP1 -prefix FILLER
+add_fillers -base_cells FEED7 FEED5 FEED3 FEED25 FEED2 FEED15 FEED10 FEED1 -prefix FILLER
+add_metal_fill
+trim_metal_fill
 ##Generate reports
 report_summary -out_dir summaryReport
